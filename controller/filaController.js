@@ -1,14 +1,21 @@
 const minhaFila = new Fila(5);
 
-function adicionarElemento(){
-    const nomeInput = document.getElementById("txtnovoNome");
-    const novoCpf = document.getElementById("txtnovoCpf");
-
-    const atendimento = new Atendimento(nomeInput.value, novoCpf.value);
-
-    minhaFila.enqueue(atendimento);
-    mostrarFila();
+function adicionarElemento() {
+  const nome = document.getElementById("txtnovoNome");  // Input nome
+  const cpf = document.getElementById("txtnovoCpf");  // Input CPF
+  const data = obterDataAtual();  // Função para obter data atual
+  const hora = obterHoraAtual();  // Função para obter hora atual
+  const novoAtendimento = new Atendimento(nome.value, cpf.value, data, hora);  // Cria Atendimento
+  if (minhaFila.enqueue(novoAtendimento)) {  // Adiciona à fila
+    mostrarFila();  // mostra fila atualizada
+    nome.value = "";  // Limpa input nome
+    cpf.value = "";  // Limpa input CPF
+    nome.focus();  // Foco no nome
+  } else {
+    alert("Fila cheia!");  // Alerta se fila cheia
+  }
 }
+
 
 function mostrarFila(){
     const filaElemento = document.getElementById("listFila");
@@ -31,15 +38,15 @@ function removerElemento(){
 }
 
 function buscarElemento(){
-    const busca = document.getElementById("txtnovoNome");
+    const busca = document.getElementById("txtnovoCpf");  // Input CPF para busca
     let encontrado = false;
     for(let item of minhaFila){
-       if(busca.value === item.nome){
+       if(busca.value === item.cpf){
         alert("Encontrado na fila");
         encontrado = true;
        }
     }
     if(!encontrado)
-      alert("Pessoa não está na fila");
+      alert("CPF não encontrado na fila");
 
 }// fim funcao busca
