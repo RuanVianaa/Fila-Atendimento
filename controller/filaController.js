@@ -27,18 +27,23 @@ function mostrarFila(){
     }
 }
 
-function removerElemento(){
+function removerElemento() {
     const removido = minhaFila.dequeue();
-    const horaSaida = obterHoraAtual(); //VAi mostrar o horário que a pessoa saiu da fila
-    const tempoFila = calcularDiferencaHoras(removido.hora, horaSaida); //Calcula o tempo que a pessoa ficoi na fila
-    if(removido===null)
+
+    if (removido === null) {
       alert("Fila vazia");
-    else{
-      const dadoAtendimento = ("Próximo a ser atendido: " + removido.nome + ", Chegou às: " + removido.hora + 
-        " está sendo atendido(a) às: " + horaSaida + " Tempo de espera: " + tempoFila);
-      alert(dadoAtendimento);// A const usei para saber como armazenar no local storage.
-      localStorage.setItem('ultimoAtendido', dadoAtendimento);
-      mostrarFila();
+    } else {
+      const horaSaida = obterHoraAtual(); // VAi mostrar o horário que a pessoa saiu da fila
+      const tempoFila = calcularDiferencaHoras(removido.hora, horaSaida); // Tempo que a pessoa ficou na fila
+
+      const dadoAtendimento = "Próximo a ser atendido: " + removido.nome + ", chegou às " + removido.hora +
+      " e está sendo atendido(a) às " + horaSaida + ". Tempo de espera: " + tempoFila; // Monta a mensagem de atendimento
+      const divMensagem = document.getElementById("mensagem-remocao"); // Vai mostrar a mensagem de atendimento sem ser um alert
+      divMensagem.textContent = dadoAtendimento; // Mostra a mensagem de atendimento
+      divMensagem.style.display = "block";
+
+      localStorage.setItem('ultimoAtendido', removido.nome); // Armazena o nome da última pessoa atendida
+      mostrarFila(); // Mostra fila atualizada
     }
 }
 

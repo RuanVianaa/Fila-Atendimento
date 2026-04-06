@@ -1,17 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Último Atendimento</title>
 </head>
-<body>
-    <h1>Último Atendimento</h1>
-    <div id="ultimoAtendimento">Aguardando...
-    </div>
+<style>
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background-color: #f2f2f2;
+    }
 
-<script src="controller/painelController.js"></script> //Coloquei o script no final do body para garantir 
+    .container {
+        width: 520px;
+        margin: 60px auto;
+        background-color: #ececec;
+        padding: 40px;
+        border-radius: 2px;
+    }
+
+    .card {
+        background-color: white;
+        border-radius: 10px;
+        padding: 40px 30px;
+        text-align: center;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    }
+
+    h1 {
+        margin: 0 0 30px 0;
+        font-size: 32px;
+        color: #1f2a44;
+        text-align: center;
+    }
+
+    #ultimoAtendimento {
+        font-size: 28px;
+        color: #39b54a;
+        text-align: center;
+        margin-top: 10px;
+    }
+</style>
+
+<body>
+    <div class="container">
+        <h1>Último Atendimento</h1>
+        <div id="ultimoAtendimento">Aguardando...
+        </div>
+
+        <script src="controller/painelController.js"></script> <!--Coloquei o script no final do body para garantir 
 //que o DOM estivesse carregado antes de executar o JavaScript, ai evita o erro de tentar ir em elementos 
-//que ainda não existiam.   
+//que ainda não existiam. -->
 </body>
+
 </html>
