@@ -28,11 +28,16 @@ function mostrarFila(){
 }
 
 function removerElemento(){
-    let removido = minhaFila.dequeue();
+    const removido = minhaFila.dequeue();
+    const horaSaida = obterHoraAtual(); //VAi mostrar o horário que a pessoa saiu da fila
+    const tempoFila = calcularDiferencaHoras(removido.hora, horaSaida); //Calcula o tempo que a pessoa ficoi na fila
     if(removido===null)
       alert("Fila vazia");
     else{
-      alert("Atendido: " + removido.nome);
+      const dadoAtendimento = ("Próximo a ser atendido: " + removido.nome + ", Chegou às: " + removido.hora + 
+        " está sendo atendido(a) às: " + horaSaida + " Tempo de espera: " + tempoFila);
+      alert(dadoAtendimento);// A const usei para saber como armazenar no local storage.
+      localStorage.setItem('ultimoAtendido', dadoAtendimento);
       mostrarFila();
     }
 }
