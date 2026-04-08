@@ -50,11 +50,14 @@ function removerElemento() {
 function buscarElemento(){
     const busca = document.getElementById("txtnovoCpf");  // Input CPF para busca
     let encontrado = false;
+    let posicao = 1;
     for(let item of minhaFila){
        if(busca.value === item.cpf){
-        alert("Encontrado na fila");
+        alert("Encontrado na fila  - posição: " + posicao);
         encontrado = true;
+        break;
        }
+        posicao++;
     }
     if(!encontrado)
       alert("CPF não encontrado na fila");
